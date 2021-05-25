@@ -1,0 +1,6 @@
+## Config for user SSH
+Host 98.98.98.98
+    HostName 54.167.16.173
+    User ubuntu
+    Port 22
+    IdentityFile ~/.ssh/holberton
