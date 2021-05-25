@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Creates a new rsa 4096 keypair
+ssh-keygen -t rsa -b 4096 -f holberton
