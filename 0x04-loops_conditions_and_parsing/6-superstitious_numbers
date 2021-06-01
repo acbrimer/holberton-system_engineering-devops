@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Prints Holberton School x 10 with while loop
+n=1
+while [ "$n" -lt 21 ]; do
+    echo "$n";
+    if [ "$n" -eq 4 ];
+    then 
+      echo "bad luck from China";
+    elif [ "$n" -eq 9 ];
+    then
+        echo "bad luck from Japan";
+    elif [ "$n" -eq 17 ];
+    then
+        echo "bad luck from Italy"
+    fi
+    n=$(( n + 1))
+done
