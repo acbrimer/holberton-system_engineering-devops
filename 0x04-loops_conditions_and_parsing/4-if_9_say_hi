@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Prints Holberton School x 10 with while loop
 n=0
-while [ "$n" -lt 10 ]; do
-    if [ "$n" -eq 8 ];
+while [ "$n" -lt 11 ]; do
+    if [ "$n" -eq 9 ];
     then 
       echo "Hi";
     else
