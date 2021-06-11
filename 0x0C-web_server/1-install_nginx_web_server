@@ -15,7 +15,7 @@ server {
         }
 }
 EOM
-echo "$CONFIG" | sudo tee /etc/nginx/sites-available/default
+echo "$CONFIG" | sudo tee /etc/nginx/sites-available/default > /dev/null
 echo "Holberton School" | sudo tee /var/www/html/index.html
 sudo service nginx restart
 sudo nginx -s reload
