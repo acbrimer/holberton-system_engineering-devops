@@ -1,16 +1,30 @@
 #!/usr/bin/env bash
-# Installs nginx with 301
+read -r -d '' CONFIG << EOM
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
 
-sudo apt-get -y update
-sudo apt-get -y upgrade
-sudo apt-get -y install nginx
-sudo service nginx start
-sudo echo "Holberton School" | sudo tee /var/www/html/index.nginx-debian.html
+        root /var/www/html;
+        index index.html index.htm index.nginx-debian.html;
 
-sudo touch /var/www/html/error404.html
-sudo echo "Ceci n'est pas une page" | sudo tee /var/www/html/error404.html
+        server_name _;
 
-search_str="^\tlocation / {"
-replace_str="\terror_page 404 /error404.html;\n\n\tlocation /redirect_me {\n\t\treturn 301 \$scheme://https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}\n\n\tlocation / {"
-sudo sed -i "s@${search_str}@${replace_str}@" /etc/nginx/sites-available/default
+    error_page 404 /error404.html;
+
+    location /redirect_me {
+        return 301 \$scheme://youtube.com/watch?v=QH2-TGUlwu4\$request_uri;
+    }
+
+        location / {
+            try_files \$uri \$uri/ =404;
+        }
+
+    location /error404.html {
+        internal;
+    }
+}
+EOM
+echo "$CONFIG" | sudo tee /etc/nginx/sites-available/default
+echo "Holberton School" | sudo tee /var/www/html/index.html
 sudo service nginx restart
+sudo nginx -s reload
