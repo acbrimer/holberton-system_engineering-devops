@@ -1,9 +1,21 @@
 #!/usr/bin/env bash
-# Installs nginx via apt-get
+# Redirects to youtube for /redirect_me route
+read -r -d '' CONFIG << EOM
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
 
-sudo apt-get -y update
-sudo apt-get -y upgrade
-sudo apt-get -y install nginx
-sudo service nginx start
-echo "Holberton School for the win!" | sudo tee /var/www/html/index.html
+        root /var/www/html;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name _;
+
+        location / {
+            try_files \$uri \$uri/ =404;
+        }
+}
+EOM
+echo "$CONFIG" | sudo tee /etc/nginx/sites-available/default
+echo "Holberton School" | sudo tee /var/www/html/index.html
 sudo service nginx restart
+sudo nginx -s reload
