@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-# Redirects to youtube for /redirect_me route
+# Sets up simple server with page returning Holberton School
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install nginx
+sudo service nginx start
 read -r -d '' CONFIG << EOM
 server {
         listen 80 default_server;
