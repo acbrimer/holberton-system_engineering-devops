@@ -14,22 +14,23 @@ server {
 
         server_name _;
 
-    error_page 404 /error404.html;
+        error_page 404 /error404.html;
 
-    location /redirect_me {
-        return 301 \$scheme://youtube.com/watch?v=QH2-TGUlwu4\$request_uri;
-    }
+        location /redirect_me {
+            return 301 \$scheme://youtube.com/watch?v=QH2-TGUlwu4\$request_uri;
+        }
 
         location / {
             try_files \$uri \$uri/ =404;
         }
 
-    location /error404.html {
-        internal;
-    }
+        location /error404.html {
+            internal;
+        }
 }
 EOM
 echo "$CONFIG" | sudo tee /etc/nginx/sites-available/default
 echo "Holberton School" | sudo tee /var/www/html/index.html
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/error404.html
 sudo service nginx restart
 sudo nginx -s reload
