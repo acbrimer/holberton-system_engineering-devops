@@ -16,5 +16,7 @@ backend web_backend
     server web-02 52.91.225.194:80 check
 EOM
 sudo sed -n '/frontend http_web/q;p' /etc/haproxy/haproxy.cfg | sudo tee /etc/haproxy/haproxy.cfg
-echo "$CONFIG" | sudo tee -a /etc/haproxy/haproxy.cfg
+echo "$CONFIG" | sudo tee -a /etc/haproxy/haproxy.cfg > /dev/null
+echo "web-01"
+echo "web-02"
 sudo service haproxy restart
