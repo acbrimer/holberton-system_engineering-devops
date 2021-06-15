@@ -29,3 +29,4 @@ echo "$CONFIG" | sudo tee /etc/nginx/sites-available/default > /dev/null
 echo "Holberton School" | sudo tee /var/www/html/index.html
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/error404.html
 sudo service nginx restart
+exit 1
