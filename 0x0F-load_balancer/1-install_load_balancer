@@ -3,7 +3,6 @@
 sudo apt-get -y update
 sudo apt-get -y upgrade
 sudo apt-get install -y haproxy
-
 read -r -d '' CONFIG <<- EOM
 frontend http_web
     bind *:80
