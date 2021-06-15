@@ -12,8 +12,8 @@ frontend http_web
 
 backend web_backend
     balance roundrobin
-    server web01 54.167.16.173:80 check
-    server web022 52.91.225.194:80 check
+    server web-01 54.167.16.173:80 check
+    server web-02 52.91.225.194:80 check
 EOM
 sed -n '/frontend http_web/q;p' /etc/haproxy/haproxy.cfg | sudo tee /etc/haproxy/haproxy.cfg
 echo "$CONFIG" | sudo tee -a /etc/haproxy/haproxy.cfg
