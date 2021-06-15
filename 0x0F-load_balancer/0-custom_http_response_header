@@ -25,8 +25,8 @@ server {
         }
 }
 EOM
-echo "$CONFIG" | sudo tee /etc/nginx/sites-available/default
-echo "Holberton School" | sudo tee /var/www/html/index.html
-echo "Ceci n'est pas une page" | sudo tee /var/www/html/error404.html
+echo "$CONFIG" | sudo tee /etc/nginx/sites-available/default > /dev/null
+echo "Holberton School" | sudo tee /var/www/html/index.html > /dev/null
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/error404.html > /dev/null
 sudo service nginx restart
 sudo nginx -s reload
