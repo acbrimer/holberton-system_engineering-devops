@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Sets up server with redirect and 404
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install nginx
+sudo service nginx start
+read -r -d '' CONFIG << EOM
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        root /var/www/html;
+        index index.html index.htm index.nginx-debian.html;
+        server_name _;
+        error_page 404 /error404.html;
+        underscores_in_headers on;
+        location /redirect_me {
+            return 301 \$scheme://youtube.com/watch?v=QH2-TGUlwu4\$request_uri;
+        }
+        location / {
+        add_header X-Served-By \$hostname;
+            try_files \$uri \$uri/ =404;
+        }
+        location /error404.html {
+            internal;
+        }
+}
+EOM
+echo "$CONFIG" | sudo tee /etc/nginx/sites-available/default
+echo "Holberton School" | sudo tee /var/www/html/index.html
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/error404.html
+sudo service nginx restart
+sudo nginx -s reload
