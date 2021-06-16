@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Blocks all ports except 22, 443, 80
+sudo ufw enable
+sudo ufw allow ssh
+sudo ufw allow http
+sudo ufw allow https
+sudo ufw allow 8080
+sudo iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
+sudo iptables -t nat -A PREROUTING -p tcp --dport 8080 -j REDIRECT --to-port 80
+sudo ufw disable
+sudo ufw enable
