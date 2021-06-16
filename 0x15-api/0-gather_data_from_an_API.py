@@ -2,27 +2,30 @@
 """
     Module 0-gather_data_from_an_API
 """
-import sys
 import requests
+import sys
 
 BASE_URI = 'https://jsonplaceholder.typicode.com/'
+
 
 def get_user(user_id):
     """
         Fetches user info
-        Request URI: https://jsonplaceholder.typicode.com/users/<user_id>
+        URI: https://jsonplaceholder.typicode.com/users/<user_id>
     """
     response = requests.get("{}users/{}".format(BASE_URI, user_id))
     return response.json()
 
+
 def get_user_todos(user_id):
-    """ 
-        Fetches and prints todos for employee (user)
-        Request URI: https://jsonplaceholder.typicode.com/todos?userId=<user_id>
     """
-    response = requests.get("{}todos".format(BASE_URI), 
-            params={ "userId": user_id })
+        Fetches todos for employee (user)
+        URI: https://jsonplaceholder.typicode.com/todos?userId=<user_id>
+    """
+    response = requests.get("{}todos".format(BASE_URI),
+                            params={"userId": user_id})
     return response.json()
+
 
 def list_user_todos(user_id):
     """
