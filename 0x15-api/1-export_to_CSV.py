@@ -52,9 +52,9 @@ def list_user_todos_csv(user_id):
     user = get_user(user_id)
     user_todos = get_user_todos(user_id)
     for todo in user_todos:
-        todo.update({'user_name': user['name']})
+        todo.update({'username': user['username']})
         del(todo['id'])
-    cols = ['userId', 'user_name', 'completed', 'title']
+    cols = ['userId', 'username', 'completed', 'title']
     with open('{}.csv'.format(user_id), 'w') as f:
         dict_writer = csv.DictWriter(f, cols, quoting=csv.QUOTE_ALL)
         dict_writer.writerows(user_todos)
