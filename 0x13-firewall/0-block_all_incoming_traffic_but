@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Blocks all ports except 22, 443, 80
+sudo ufw enable
+sudo ufw 22, 443, 80
